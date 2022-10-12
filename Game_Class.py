@@ -7,6 +7,6 @@ class Game:
         self.p2 = p2
         self.gb = gb
 
-    def start_point(self, Player):
+    def start_point(self):
         pocket_num = int(input("What pocket do you want to start from? "))
         return pocket_num
