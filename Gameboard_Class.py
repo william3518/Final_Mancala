@@ -10,7 +10,7 @@ class Gameboard:
         self.row = 1
         self.piece_num = self.board[self.row][start]
         self.board[self.row][start] = 0
-        self.board[self.row][start+1]
+        start += 1
         while self.piece_num > 0:
             if self.row == 1 and start <= 5:
                 self.board[self.row][start] += 1
