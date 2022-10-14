@@ -10,7 +10,9 @@ class Game:
         self.gb = gb
 
     def start_point(self):
-        pocket_num = int(input("What pocket do you want to start from? (1-5) "))
+        print("")
+        print("[1, 2, 3, 4, 5]")
+        pocket_num = int(input("What pocket do you want to start from? (1-5): "))
         return pocket_num
 
     def end_turn(self, current_player):
@@ -26,13 +28,13 @@ class Game:
         else:
             print(self.p2.get_name(), "'s turn:")
         while True:
-            self.gb.display_board()
+            self.gb.show_board()
             start = self.start_point()
             end = self.gb.move_pieces(start)
             if self.gb.extra_turn(end) == False:
                 break
-        self.gb.capture()
-        if self.end_game() == True:
+        self.gb.capture(end)
+        if self.gb.end_game() == True:
             if self.gb[1][6] > self.gb[0][0]:
                 if current_player == 1:
                     print("Game over,", self.p1.get_name(), "wins")
@@ -49,7 +51,7 @@ class Game:
                     print("Score:", self.gb[0][0], "-", self.gb[1][6])
         else:
             self.gb.flip_board()
-            self.end_turn()
+            self.end_turn(current_player)
 
 
 

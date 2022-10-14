@@ -8,6 +8,7 @@ class Gameboard:
 
     def move_pieces(self, start):
         row = 1
+        start -= 1
         piece_num = self.board[row][start]
         self.board[row][start] = 0
         start += 1
@@ -44,16 +45,16 @@ class Gameboard:
                     self.board[0][end[1]] = 0
 
     def end_game(self):
-        sumtop = 0
-        sumbot = 0
-        for i in range(5):
-            sumtop += self.board[0][i+1]
-        if sumtop == 0:
+        sum_top = 0
+        sum_bot = 0
+        for i in range(6):
+            sum_top += self.board[0][i+1]
+        if sum_top == 0:
             return True
-        elif sumtop != 0:
-            for z in range(4):
-                sumbot += self.board[1][z]
-            if sumbot == 0:
+        elif sum_top != 0:
+            for j in range(6):
+                sum_bot += self.board[1][j]
+            if sum_bot == 0:
                 return True
         else:
             return False

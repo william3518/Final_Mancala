@@ -1,5 +1,4 @@
 from Game_Class import Game
-from Player_SuperClass import Player
 from Human_SubClass import Human
 from Gameboard_Class import Gameboard
 
@@ -9,5 +8,8 @@ p2 = Human(2, "Robert")
 gb1 = Gameboard()
 
 
-g1 = ()
+g1 = Game(p1, p2, gb1)
+while g1.gb.end_game() != False:
+    g1.turn(1)
+
 
