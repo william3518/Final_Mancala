@@ -43,11 +43,24 @@ class Gameboard:
                     self.board[end[0]][end[1]] = 0
                     self.board[0][end[1]] = 0
 
+    def end_game(self):
+        sumtop = 0
+        sumbot = 0
+        for i in range(5):
+            sumtop += self.board[0][i+1]
+        if sumtop == 0:
+            return True
+        elif sumtop != 0:
+            for z in range(4):
+                sumbot += self.board[1][z]
+            if sumbot == 0:
+                return True
+        else:
+            return False
+
     def flip_board(self):
         temp = self.board[1]
         self.board[1] = self.board[0]
         self.board[0] = temp
         self.board[0] = self.board[0].reverse()
         self.board[1] = self.board[1].reverse()
-
-

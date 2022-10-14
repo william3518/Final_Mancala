@@ -10,3 +10,5 @@ class Game:
     def start_point(self):
         pocket_num = int(input("What pocket do you want to start from? "))
         return pocket_num
+
+
