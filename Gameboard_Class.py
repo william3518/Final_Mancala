@@ -65,3 +65,4 @@ class Gameboard:
         self.board[0] = temp
         self.board[0] = self.board[0].reverse()
         self.board[1] = self.board[1].reverse()
+
