@@ -1,5 +1,7 @@
 from Player_SuperClass import Player
 from Human_SubClass import Human
+from Gameboard_Class import Gameboard
+
 
 class Game:
     def __init__(self, p1, p2, gb):
@@ -20,13 +22,39 @@ class Game:
 
     def turn(self, current_player):
         if current_player == 1:
-            print(self.p1.get_name, "'s turn:")
-            do {
-                self.gb.display_board()
-                start = self.start_point()
-                end = self.gb.move_pieces(start)
-            }
-            while self.gb.extra_turn(end) == True
+            print(self.p1.get_name(), "'s turn:")
+        else:
+            print(self.p2.get_name(), "'s turn:")
+        while True:
+            self.gb.display_board()
+            start = self.start_point()
+            end = self.gb.move_pieces(start)
+            if self.gb.extra_turn(end) == False:
+                break
+        self.gb.capture()
+        if self.end_game() == True:
+            if self.gb[1][6] > self.gb[0][0]:
+                if current_player == 1:
+                    print("Game over,", self.p1.get_name(), "wins")
+                    print("Score:",self.gb[1][6], "-", self.gb[0][0])
+                else:
+                    print("Game over,", self.p2.get_name(), "wins")
+                    print("Score:", self.gb[1][6], "-", self.gb[0][0])
+            else:
+                if current_player == 1:
+                    print("Game over,", self.p2.get_name(), "wins")
+                    print("Score:", self.gb[0][0], "-", self.gb[1][6])
+                else:
+                    print("Game over,", self.p1.get_name(), "wins")
+                    print("Score:", self.gb[0][0], "-", self.gb[1][6])
+        else:
+            self.gb.flip_board()
+            self.end_turn()
+
+
+
+
+
 
 
 

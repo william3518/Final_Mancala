@@ -1,6 +1,13 @@
+from Game_Class import Game
+from Player_SuperClass import Player
+from Human_SubClass import Human
 from Gameboard_Class import Gameboard
 
-g1 = Gameboard()
-g1.show_board()
-g1.move_pieces(4)
-g1.show_board()
+
+p1 = Human(1, "Will")
+p2 = Human(2, "Robert")
+gb1 = Gameboard()
+
+
+g1 = ()
+
