@@ -48,11 +48,9 @@ class Game:
                 else:
                     print("Game over,", self.p1.get_name(), "wins")
                     print("Score:", self.gb[0][0], "-", self.gb[1][6])
-            return False
         else:
             self.gb.flip_board()
             self.end_turn(current_player)
-            return True
 
 
 
