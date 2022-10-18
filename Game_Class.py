@@ -11,8 +11,8 @@ class Game:
 
     def start_point(self):
         print("")
-        print("[1, 2, 3, 4, 5]")
-        pocket_num = int(input("What pocket do you want to start from? (1-5): "))
+        print("[1, 2, 3, 4, 5, 6]")
+        pocket_num = int(input("What pocket do you want to start from? (1-6): "))
         return pocket_num
 
     def end_turn(self, current_player):

@@ -3,6 +3,9 @@ class Gameboard:
         self.last_piece = last_piece
         self.board = [[0, 4, 4, 4, 4, 4, 4], [4, 4, 4, 4, 4, 4, 0]]
 
+    def get_last_piece(self):
+        return self.last_piece
+
     def show_board(self):
         for i in range(len(self.board)):
             print(self.board[i])
@@ -13,7 +16,7 @@ class Gameboard:
         piece_num = self.board[row][start]
         self.board[row][start] = 0
         start += 1
-        while piece_num > 0:
+        while piece_num > 1:
             if row == 1 and start <= 5:
                 self.board[row][start] += 1
                 start += 1
@@ -27,6 +30,8 @@ class Gameboard:
                 self.board[row][start] += 1
                 row += 1
             piece_num -= 1
+        if piece_num == 1:
+            self.board[row][start] += 1
         self.last_piece = [row, start]
         return self.last_piece
 
