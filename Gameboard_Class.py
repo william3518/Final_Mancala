@@ -1,5 +1,6 @@
 class Gameboard:
-    def __init__(self):
+    def __init__(self, last_piece):
+        self.last_piece = last_piece
         self.board = [[0, 4, 4, 4, 4, 4, 4], [4, 4, 4, 4, 4, 4, 0]]
 
     def show_board(self):
@@ -26,23 +27,23 @@ class Gameboard:
                 self.board[row][start] += 1
                 row += 1
             piece_num -= 1
-        last_piece = [row, start]
-        return last_piece
+        self.last_piece = [row, start]
+        return self.last_piece
 
-    def extra_turn(self, last_piece):
-        if last_piece == [1, 6]:
+    def extra_turn(self):
+        if self.last_piece == [1, 6]:
             return True
         else:
             return False
 
-    def capture(self, last_piece):
-        if last_piece[0] == 1:
-            if self.board[last_piece[0]][last_piece[1]] == 1:
-                if self.board[0][last_piece[1]] > 0:
-                    capture_sum = self.board[last_piece[0]][last_piece[1]] + self.board[0][last_piece[1]]
+    def capture(self):
+        if self.last_piece[0] == 1:
+            if self.board[self.last_piece[0]][self.last_piece[1]] == 1:
+                if self.board[0][self.last_piece[1]] > 0:
+                    capture_sum = self.board[self.last_piece[0]][self.last_piece[1]] + self.board[0][self.last_piece[1]]
                     self.board[1][6] += capture_sum
-                    self.board[last_piece[0]][last_piece[1]] = 0
-                    self.board[0][last_piece[1]] = 0
+                    self.board[self.last_piece[0]][self.last_piece[1]] = 0
+                    self.board[0][self.last_piece[1]] = 0
 
     def end_game(self):
         sum_top = 0

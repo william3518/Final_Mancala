@@ -29,11 +29,10 @@ class Game:
             print(self.p2.get_name(), "'s turn:")
         while True:
             self.gb.show_board()
-            start = self.start_point()
-            end = self.gb.move_pieces(start)
-            if self.gb.extra_turn(end) == False:
+            self.gb.move_pieces(self.start_point())
+            if self.gb.extra_turn() == False:
                 break
-        self.gb.capture(end)
+        self.gb.capture()
         if self.gb.end_game() == True:
             if self.gb[1][6] > self.gb[0][0]:
                 if current_player == 1:
