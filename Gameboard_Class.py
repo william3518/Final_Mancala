@@ -26,29 +26,29 @@ class Gameboard:
                 self.board[row][start] += 1
                 row += 1
             piece_num -= 1
-            last_piece = [row, start]
-            return last_piece
+        last_piece = [row, start]
+        return last_piece
 
-    def extra_turn(self, end):
-        if end == [1, 6]:
+    def extra_turn(self, last_piece):
+        if last_piece == [1, 6]:
             return True
         else:
             return False
 
-    def capture(self, end):
-        if end[0] == 1:
-            if self.board[end[0]][end[1]] == 1:
-                if self.board[0][end[1]] > 0:
-                    capture_sum = self.board[end[0]][end[1]] + self.board[0][end[1]]
+    def capture(self, last_piece):
+        if last_piece[0] == 1:
+            if self.board[last_piece[0]][last_piece[1]] == 1:
+                if self.board[0][last_piece[1]] > 0:
+                    capture_sum = self.board[last_piece[0]][last_piece[1]] + self.board[0][last_piece[1]]
                     self.board[1][6] += capture_sum
-                    self.board[end[0]][end[1]] = 0
-                    self.board[0][end[1]] = 0
+                    self.board[last_piece[0]][last_piece[1]] = 0
+                    self.board[0][last_piece[1]] = 0
 
     def end_game(self):
         sum_top = 0
         sum_bot = 0
-        for i in range(6):
-            sum_top += self.board[0][i+1]
+        for i in range(5):
+            sum_top = sum_top + self.board[0][i+1]
         if sum_top == 0:
             return True
         elif sum_top != 0:
