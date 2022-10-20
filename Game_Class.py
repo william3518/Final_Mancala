@@ -29,28 +29,13 @@ class Game:
             print(self.p2.get_name(), "'s turn:")
         while True:
             self.gb.show_board()
-            self.gb.move_pieces(self.start_point())
+            start = self.start_point()
+            self.gb.move_pieces(start)
             if self.gb.extra_turn() == False:
                 break
         self.gb.capture()
-        if self.gb.end_game() == True:
-            if self.gb[1][6] > self.gb[0][0]:
-                if current_player == 1:
-                    print("Game over,", self.p1.get_name(), "wins")
-                    print("Score:",self.gb[1][6], "-", self.gb[0][0])
-                else:
-                    print("Game over,", self.p2.get_name(), "wins")
-                    print("Score:", self.gb[1][6], "-", self.gb[0][0])
-            else:
-                if current_player == 1:
-                    print("Game over,", self.p2.get_name(), "wins")
-                    print("Score:", self.gb[0][0], "-", self.gb[1][6])
-                else:
-                    print("Game over,", self.p1.get_name(), "wins")
-                    print("Score:", self.gb[0][0], "-", self.gb[1][6])
-        else:
-            self.gb.flip_board()
-            self.end_turn(current_player)
+        self.gb.flip_board()
+        self.end_turn(current_player)
 
 
 

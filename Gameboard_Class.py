@@ -66,9 +66,6 @@ class Gameboard:
             return False
 
     def flip_board(self):
-        temp = self.board[1]
-        self.board[1] = self.board[0]
-        self.board[0] = temp
-        self.board[0] = self.board[0].reverse()
-        self.board[1] = self.board[1].reverse()
-
+        self.board.reverse()
+        for i in range(len(self.board)):
+            self.board[i].reverse()
