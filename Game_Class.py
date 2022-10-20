@@ -4,10 +4,11 @@ from Gameboard_Class import Gameboard
 
 
 class Game:
-    def __init__(self, p1, p2, gb):
+    def __init__(self, p1, p2, gb, cp):
         self.p1 = p1
         self.p2 = p2
         self.gb = gb
+        self.current_player = cp
 
     def start_point(self):
         print("")
@@ -15,15 +16,29 @@ class Game:
         pocket_num = int(input("What pocket do you want to start from? (1-6): "))
         return pocket_num
 
-    def end_turn(self, current_player):
-        if current_player == 1:
-            current_player = 2
+    def end_turn(self):
+        if self.current_player == 1:
+            self.current_player += 1
         else:
-            current_player = 1
-        return current_player
+            self.current_player -= 1
+        return self.current_player
 
-    def turn(self, current_player):
-        if current_player == 1:
+    def determine_winner(self):
+        if self.gb[1][6] == self.gb[0][0]:
+            print("Tie game: 24 - 24")
+        elif self.current_player == 1:
+            if self.gb[1][6] > self.gb[0][0]:
+                print(self.p1.get_name(), "wins: ", str(self.gb[1][6]), "-", str(self.gb[0][0]))
+            else:
+                print(self.p2.get_name(), "wins: ", str(self.gb[0][0]), "-", str(self.gb[1][6]))
+        else:
+            if self.gb[1][6] > self.gb[0][0]:
+                print(self.p2.get_name(), "wins: ", str(self.gb[0][0]), "-", str(self.gb[1][6]))
+            else:
+                print(self.p1.get_name(), "wins: ", str(self.gb[1][6]), "-", str(self.gb[0][0]))
+
+    def turn(self):
+        if self.current_player == 1:
             print(self.p1.get_name(), "'s turn:")
         else:
             print(self.p2.get_name(), "'s turn:")
@@ -34,8 +49,15 @@ class Game:
             if self.gb.extra_turn() == False:
                 break
         self.gb.capture()
-        self.gb.flip_board()
-        self.end_turn(current_player)
+        self.gb.show_board()
+        if self.gb.end_game() == True:
+            self.determine_winner()
+        else:
+            self.gb.flip_board()
+            self.end_turn()
+            print("")
+
+
 
 
 
