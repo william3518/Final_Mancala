@@ -4,10 +4,11 @@ from Gameboard_Class import Gameboard
 
 
 class Game:
-    def __init__(self, p1, p2, gb):
+    def __init__(self, p1, p2, gb, cp):
         self.p1 = p1
         self.p2 = p2
         self.gb = gb
+        self.current_player = cp
 
     def start_point(self):
         print("")
