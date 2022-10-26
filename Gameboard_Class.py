@@ -79,13 +79,13 @@ class Gameboard:
             sum_top = sum_top + self.board[0][i+1]
         if sum_top == 0:
             return True
-        elif sum_top != 0:
-            for j in range(5):
+        else:
+            for j in range(6):
                 sum_bot += self.board[1][j]
             if sum_bot == 0:
                 return True
-        else:
-            return False
+            else:
+                return False
 
     def flip_board(self):
         self.board.reverse()
