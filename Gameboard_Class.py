@@ -80,7 +80,7 @@ class Gameboard:
         if sum_top == 0:
             return True
         elif sum_top != 0:
-            for j in range(5):
+            for j in range(6):
                 sum_bot += self.board[1][j]
             if sum_bot == 0:
                 return True
