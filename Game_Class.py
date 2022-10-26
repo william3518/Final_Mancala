@@ -18,7 +18,7 @@ class Game:
             pocket_num = int(input("What pocket do you want to start from? (1-6): "))
             if 6 < pocket_num  or  pocket_num < 1 :
                 continue
-            elif self.gb.get_board(pocket_num - 1) == 0:
+            elif self.gb.get_pocket(pocket_num - 1) == 0:
                 continue
             else:
                 break
@@ -71,6 +71,7 @@ class Game:
             if self.gb.extra_turn() == False:
                 break
         self.gb.capture()
+        self.gb.steal()
         self.gb.show_board()
         if self.gb.end_game() == True:
             self.remaining_pieces()

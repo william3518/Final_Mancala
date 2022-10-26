@@ -19,7 +19,7 @@ class Gameboard:
         for i in range(len(self.board)):
             print(self.board[i])
 
-    def get_board(self, pocket):
+    def get_pocket(self, pocket):
         return int(self.board[1][pocket])
 
     def move_pieces(self, start):
@@ -57,10 +57,11 @@ class Gameboard:
         if self.last_piece[0] == 1:
             if self.board[self.last_piece[0]][self.last_piece[1]] == 1:
                 if self.board[0][self.last_piece[1] + 1] > 0:
-                    capture_sum = self.board[self.last_piece[0]][self.last_piece[1]] + self.board[0][self.last_piece[1]]
+                    capture_sum = self.board[self.last_piece[0]][self.last_piece[1]] + \
+                                  self.board[0][self.last_piece[1] + 1]
                     self.board[1][6] += capture_sum
                     self.board[self.last_piece[0]][self.last_piece[1]] = 0
-                    self.board[0][self.last_piece[1]] = 0
+                    self.board[0][self.last_piece[1] + 1] = 0
 
     def steal(self):
         if self.last_piece == [0, 0]:
