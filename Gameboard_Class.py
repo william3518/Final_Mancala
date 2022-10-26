@@ -6,6 +6,15 @@ class Gameboard:
     def get_last_piece(self):
         return self.last_piece
 
+    def get_current_mancala(self):
+        return self.board[1][6]
+
+    def get_opposing_mancala(self):
+        return self.board[0][0]
+
+    def get_board(self):
+        return self.board
+
     def show_board(self):
         for i in range(len(self.board)):
             print(self.board[i])
@@ -44,16 +53,25 @@ class Gameboard:
     def capture(self):
         if self.last_piece[0] == 1:
             if self.board[self.last_piece[0]][self.last_piece[1]] == 1:
-                if self.board[0][self.last_piece[1]] > 0:
+                if self.board[0][self.last_piece[1] + 1] > 0:
                     capture_sum = self.board[self.last_piece[0]][self.last_piece[1]] + self.board[0][self.last_piece[1]]
                     self.board[1][6] += capture_sum
                     self.board[self.last_piece[0]][self.last_piece[1]] = 0
                     self.board[0][self.last_piece[1]] = 0
 
+    def steal(self):
+        if self.last_piece == [0, 0]:
+            if self.board[0][0] >= 2:
+                self.board[0][0] -= 2
+                self.board[1][6] += 2
+            else:
+                self.board[0][0] -= 1
+                self.board[1][6] += 1
+
     def end_game(self):
         sum_top = 0
         sum_bot = 0
-        for i in range(5):
+        for i in range(6):
             sum_top = sum_top + self.board[0][i+1]
         if sum_top == 0:
             return True

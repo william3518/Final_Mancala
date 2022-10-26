@@ -30,18 +30,32 @@ class Game:
         return self.current_player
 
     def determine_winner(self):
-        if self.gb[1][6] == self.gb[0][0]:
+        if self.gb.get_current_mancala() == self.gb.get_opposing_mancala():
             print("Tie game: 24 - 24")
         elif self.current_player == 1:
-            if self.gb[1][6] > self.gb[0][0]:
-                print(self.p1.get_name(), "wins: ", str(self.gb[1][6]), "-", str(self.gb[0][0]))
+            if self.gb.get_current_mancala() > self.gb.get_opposing_mancala():
+                print(self.p1.get_name(), "wins: ", str(self.gb.get_current_mancala()), "-",
+                      str(self.gb.get_opposing_mancala()))
             else:
-                print(self.p2.get_name(), "wins: ", str(self.gb[0][0]), "-", str(self.gb[1][6]))
+                print(self.p2.get_name(), "wins: ", str(self.gb.get_opposing_mancala()), "-",
+                      str(self.gb.get_current_mancala()))
         else:
-            if self.gb[1][6] > self.gb[0][0]:
-                print(self.p2.get_name(), "wins: ", str(self.gb[0][0]), "-", str(self.gb[1][6]))
+            if self.gb.get_current_mancala() > self.gb.get_opposing_mancala():
+                print(self.p2.get_name(), "wins: ", str(self.gb.get_current_mancala()), "-",
+                      str(self.gb.get_opposing_mancala()))
             else:
-                print(self.p1.get_name(), "wins: ", str(self.gb[1][6]), "-", str(self.gb[0][0]))
+                print(self.p1.get_name(), "wins: ", str(self.gb.get_opposing_mancala()), "-",
+                      str(self.gb.get_current_mancala()))
+
+    def remaining_pieces(self):
+        sum_top = 0
+        sum_bot = 0
+        for i in range(6):
+            sum_top += self.gb.get_board()[0][i+1]
+        self.gb.get_board()[0][0] += sum_top
+        for j in range(6):
+            sum_bot += self.gb.get_board()[1][j]
+        self.gb.get_board()[1][6] += sum_bot
 
     def turn(self):
         if self.current_player == 1:
@@ -57,6 +71,7 @@ class Game:
         self.gb.capture()
         self.gb.show_board()
         if self.gb.end_game() == True:
+            self.remaining_pieces()
             self.determine_winner()
         else:
             self.gb.flip_board()
