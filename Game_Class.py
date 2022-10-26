@@ -13,13 +13,15 @@ class Game:
     def start_point(self):
         print("")
         print("[1, 2, 3, 4, 5, 6]")
-        pocket_num = 7
-        while 6 < pocket_num or pocket_num < 1:
+        pocket_num = 0
+        while True :
             pocket_num = int(input("What pocket do you want to start from? (1-6): "))
-            if 6 >= pocket_num > 0:
-                break
-            else:
+            if 6 < pocket_num  or  pocket_num < 1 :
                 continue
+            elif self.gb.get_board(pocket_num - 1) == 0:
+                continue
+            else:
+                break
         return pocket_num
 
     def end_turn(self):

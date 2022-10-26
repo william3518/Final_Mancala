@@ -19,6 +19,9 @@ class Gameboard:
         for i in range(len(self.board)):
             print(self.board[i])
 
+    def get_board(self, pocket):
+        return int(self.board[1][pocket])
+
     def move_pieces(self, start):
         row = 1
         start -= 1
@@ -76,7 +79,7 @@ class Gameboard:
         if sum_top == 0:
             return True
         elif sum_top != 0:
-            for j in range(6):
+            for j in range(5):
                 sum_bot += self.board[1][j]
             if sum_bot == 0:
                 return True
